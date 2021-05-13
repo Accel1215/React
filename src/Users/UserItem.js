@@ -20,7 +20,7 @@ export default class UserItem extends Component{
             classes.push("list-group-item list-group-item-action")
         )
         return(
-            <li className={classes} onClick={() => {getInfo(user.id)}}>{user.id}) {user.name}</li>
+            <li className={classes} onClick={() =>getInfo(user.id)}>{user.id}) {user.name}</li>
         )
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import UserInfo from './UserInfo';
 import UserItem from './UserItem';
-
 
 export default class UserList extends Component{
     constructor(props){
@@ -30,13 +30,31 @@ export default class UserList extends Component{
       render(){
           const {users, idActive} = this.state;
           return(
-            <ul className="list-group">
-              {users.map((val) => {
-                return (
-                <UserItem user={val} idShow={idActive} getInfo={this.getInfo}/>
-                );
-              })}
-            </ul>
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <ul className="list-group">
+                    {users.map((val) => {
+                      return (
+                      <UserItem user={val} idShow={idActive} getInfo={this.getInfo}/>
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div class="col">
+                  <ul class="list-group">
+                  {users.map((val) => {
+                     if(val.id == idActive)
+                     {
+                      return (
+                        <UserInfo user={val}/>
+                        );
+                     }
+                    })}
+                  </ul>
+                </div>
+              </div>
+            </div>
           )
       }
 }

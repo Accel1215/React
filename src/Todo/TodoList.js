@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TodoItem from "./TodoItem";
+import Pagination from "../templates/Pagination"
 
 export default class TodoList extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ export default class TodoList extends Component {
     };
     this.onCheckedTodo = this.onCheckedTodo.bind(this);
     this.addTodo = this.addTodo.bind(this);
-    this.deleteTodo = this.deleteTodo.bind(this)
+    this.deleteTodo = this.deleteTodo.bind(this);
+    this.onPageChange = this.onPageChange.bind(this)
   }
   onCheckedTodo(id) {
     console.log("checked", id);
@@ -49,6 +51,9 @@ export default class TodoList extends Component {
     })
     this.setState({todos:todos})
   }
+  onPageChange(current){
+    this.setState({currentPage: current})
+  }
   componentDidMount(){
     fetch('http://jsonplaceholder.typicode.com/todos')
     .then(res => res.json())
@@ -58,12 +63,27 @@ export default class TodoList extends Component {
   }
   render() {
     const { todos } = this.state;
-    const indexLastTodo = this.state.currentPage * this.state.todoPerPage
-    const indexFirsTodo = indexLastTodo - this.state.todoPerPage
+    const todoCount = todos.length;
+    const pageCount = Math.ceil(todoCount / this.state.todoPerPage);
+    const currentPage = this.state.currentPage;
+    let indexLastTodo;
+    let indexFirsTodo;
+    if(this.state.currentPage * this.state.todoPerPage > todoCount - this.todoPerPage){
+      indexLastTodo = todoCount;
+      indexFirsTodo = indexLastTodo - indexLastTodo % this.todoPerPage;
+    }
+    else{
+      indexLastTodo = this.state.currentPage * this.state.todoPerPage;
+      indexFirsTodo = indexLastTodo - this.state.todoPerPage;
+    }
+    
     const currentTodos = todos.slice(indexFirsTodo,indexLastTodo)
+
+    console.log(todoCount)
     console.log(todos)
     return (
       <ul className="list-group">
+        <Pagination onPageChange={this.onPageChange} indexFirsTodo={indexFirsTodo} currentPage={currentPage} pageCount={pageCount}/>
         <form onSubmit={this.addTodo}>
           <input placeholder="type here" onChange={(event)=>{this.setState({inputValue: event.target.value})}}/>
           <button type="submit">Add </button>

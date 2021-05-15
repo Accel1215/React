@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import TodoItem from "./TodoItem";
 import Pagination from "../templates/Pagination"
 
+const styles ={
+  form: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
+}
+
 export default class TodoList extends Component {
   constructor(props) {
     super(props);
@@ -83,8 +90,7 @@ export default class TodoList extends Component {
     console.log(todos)
     return (
       <ul className="list-group">
-        <Pagination onPageChange={this.onPageChange} indexFirsTodo={indexFirsTodo} currentPage={currentPage} pageCount={pageCount}/>
-        <form onSubmit={this.addTodo}>
+        <form onSubmit={this.addTodo} style={styles.form}>
           <input placeholder="type here" onChange={(event)=>{this.setState({inputValue: event.target.value})}}/>
           <button type="submit">Add </button>
         </form>
@@ -93,6 +99,7 @@ export default class TodoList extends Component {
             <TodoItem todo={val} key={val.id} checked={this.onCheckedTodo} deleteTodo={this.deleteTodo} />
           );
         })}
+        <Pagination onPageChange={this.onPageChange} indexFirsTodo={indexFirsTodo} currentPage={currentPage} pageCount={pageCount}/>
       </ul>
     );
   }

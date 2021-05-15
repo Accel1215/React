@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import '../index.css';
 const styles = {
-  span: {
-    marginRight: "100px",
+  todo: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '1000px'
   },
+  button: {
+    position: 'absolute',
+    left: "93%",
+    top: "1px",
+    height: '36px'
+  }
 };
 
 export default class TodoItem extends Component {
@@ -21,17 +29,20 @@ export default class TodoItem extends Component {
         classes.push('done')
     }
     return (
-      <li className="list-group-item">
-        <input
-          type="checkbox"
-          name=""
-          id=""
-          onChange={() => {
-            checked(todo.id);
-          }}
-        />
-        <span className={classes} style={styles.span}>{todo.title}</span>
-        <button onClick={()=>{deleteTodo(todo.id)}} className="btn btn-primary">Delete</button>
+      <li className="list-group-item" style={styles.todo}>
+        <div>
+          <input
+            type="checkbox"
+            name=""
+            id=""
+            onChange={() => {
+              checked(todo.id);
+            }}
+          />
+          <span className={classes}>{todo.title}</span>
+
+          <button onClick={()=>{deleteTodo(todo.id)}} className="btn btn-primary" style={styles.button}>Delete</button>
+        </div>
       </li>
     );
   }

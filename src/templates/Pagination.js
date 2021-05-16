@@ -3,24 +3,20 @@ import React, { Component } from 'react'
 const LEFT_PAGE = "left"
 const RIGHT_PAGE = "right"
 
+const styles= {
+    label: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    },
+}
+
 export default class Pagination extends Component {
     constructor(props) {
         super(props)
+
         this.state = {}
+
         this.PageNumbers = this.PageNumbers.bind(this);
-    }
-
-    range(begin, end) {
-        let i = begin;
-        const result = [];
-        
-        while(i <= begin)
-        {
-            result.push(i);
-            ++i;
-        }
-
-        return result;
     }
 
     PageNumbers(currentPage, pageCount) {
@@ -39,21 +35,21 @@ export default class Pagination extends Component {
         const { onPageChange, currentPage, pageCount } = this.props
         const pages = this.PageNumbers(currentPage, pageCount)
         return (
-            <li>
+            <div style={styles.label}>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         {pages.map((val) => {
                             if(val == currentPage)
                             {
                                 return (
-                                    <li class="page-item active"><a class="page-link" href="#" onClick={() => onPageChange(val)}>{val}</a></li>
+                                    <li class="page-item active"><a class="page-link" onClick={() => onPageChange(val)}>{val}</a></li>
                                 )
                             }
                             if(val == RIGHT_PAGE)
                             {
                                 return (
                                     <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next" onClick={() => onPageChange(currentPage + 1)}>
+                                        <a class="page-link" aria-label="Next" onClick={() => onPageChange(currentPage + 1)}>
                                             <span aria-hidden="true">&raquo;</span>
                                         </a>
                                     </li>
@@ -63,19 +59,19 @@ export default class Pagination extends Component {
                             {
                                 return (
                                     <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous" onClick={() => onPageChange(currentPage - 1)}>
+                                        <a class="page-link" aria-label="Previous" onClick={() => onPageChange(currentPage - 1)}>
                                             <span aria-hidden="true">&laquo;</span>
                                         </a>
                                     </li>
                                 )
                             }
                             return (
-                                <li class="page-item"><a class="page-link" href="#" onClick={() => onPageChange(val)}>{val}</a></li>
+                                <li class="page-item"><a class="page-link" onClick={() => onPageChange(val)}>{val}</a></li>
                             )
                         })}
                     </ul>
                 </nav>
-            </li>
+            </div>
         )
     }
 

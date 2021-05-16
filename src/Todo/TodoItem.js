@@ -7,11 +7,29 @@ const styles = {
     width: '1000px'
   },
   button: {
-    position: 'absolute',
+    position: 'sticky',
     left: "93%",
-    top: "1px",
-    height: '36px'
+    width: '100px',
+  },
+  span: {
+    position: 'relative',
+    width: '800px',
+    left: '35px',
+    display: 'block',
+    wordWrap: 'break-word',
+  },
+  div: {
+    position: 'absolute',
+    left: '40px',
+    top: '50%',
+    transform: 'translate(0, -50%)',
+  },
+  check: {
+    position: 'absolute',
+    top: '45%',
+    transform: 'translate(0,-50%)',
   }
+
 };
 
 export default class TodoItem extends Component {
@@ -30,8 +48,10 @@ export default class TodoItem extends Component {
     }
     return (
       <li className="list-group-item" style={styles.todo}>
-        <div>
-          <input
+        <div class="form-check">
+          <input 
+            class="form-check-input"
+            style={styles.check}
             type="checkbox"
             name=""
             id=""
@@ -39,7 +59,10 @@ export default class TodoItem extends Component {
               checked(todo.id);
             }}
           />
-          <span className={classes}>{todo.title}</span>
+          <div style={styles.div}>
+            <span className={classes} style={styles.span}>{todo.title}</span>
+          </div>
+          
 
           <button onClick={()=>{deleteTodo(todo.id)}} className="btn btn-primary" style={styles.button}>Delete</button>
         </div>

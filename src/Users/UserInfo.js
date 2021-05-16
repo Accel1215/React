@@ -14,7 +14,7 @@ export default class UserInfo extends Component {
             <div class="border">
                 <div class="border">
                     <h3>Profile</h3>
-                    <ul class="list-group">
+                    <ul>
                         <li>id: {user.id}</li>
                         <li>Name: {user.name}</li>
                         <li>Username: {user.username}</li>
@@ -25,7 +25,7 @@ export default class UserInfo extends Component {
                 </div>
                 <div class="border">
                     <h3>Address</h3>
-                    <ul class="list-group">
+                    <ul>
                         <li>street: {user.address.street}</li>
                         <li>suite: {user.address.suite}</li>
                         <li>city: {user.address.city}</li>
@@ -36,7 +36,7 @@ export default class UserInfo extends Component {
                 
                 <div class="border">
                     <h3>Company</h3>
-                    <ul class="list-group">
+                    <ul>
                         <li>Name: {user.company.name}</li>
                         <li>Catch phrase: {user.company.catchPhrase}</li>
                         <li>bs: {user.company.bs}</li>

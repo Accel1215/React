@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 
+const styles = {
+    div: {
+        background: '#FFF',
+    }
+}
+
 export default class UserInfo extends Component {
     constructor(props)
     {
@@ -11,7 +17,7 @@ export default class UserInfo extends Component {
         const {user} = this.props;
 
         return(
-            <div class="border">
+            <div class="border"  style={styles.div}>
                 <div class="border">
                     <h3>Profile</h3>
                     <ul>

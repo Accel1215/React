@@ -16,10 +16,12 @@ const styles = {
     color: 'blue'
   }
 }
+
+document.body.style = 'background: #DDD;';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
-
   </React.StrictMode>,
   document.getElementById('root')
 );
